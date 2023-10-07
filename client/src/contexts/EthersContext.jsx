@@ -5,7 +5,7 @@ import { ethers } from "ethers";
 import { toast } from "react-toastify";
 import { createContext, useContext, useEffect, useState } from "react";
 
-import contractABI from "@/utils/contractABI";
+import SmartContract from "../../../smart-contract/artifacts/contracts/CrowdFunding.sol/CrowdFunding.json";
 
 const EthersContext = createContext();
 
@@ -17,25 +17,21 @@ export const EthersProvider = ({ children }) => {
 
   useEffect(() => {
     const initEthers = async () => {
-      if(!Cookie.get("isAllowed")){
-        setLoading(true)
-
-        await window.ethereum.request({ method: "eth_requestAccounts" });
-        const provider = new ethers.BrowserProvider(window.ethereum);
-        const contractInstance = new ethers.Contract(
-          process.env.NEXT_PUBLIC_CONTRACT_ADDRESS,
-          contractABI,
-          provider
-        );
-
-        setLoading(false);
-        return setContract(contractInstance);
-      }
+      const provider = new ethers.BrowserProvider(
+        process.env.NEXT_PUBLIC_PROVIDER_URL
+      );
+      const contractInstance = new ethers.Contract(
+        process.env.NEXT_PUBLIC_CONTRACT_ADDRESS,
+        SmartContract['abi'],
+        provider
+      );
       
-      connectWallet();
+      setProvider(provider);
+      setContract(contractInstance);
+      Cookie.get("isAllowed") && connectWallet();
     };
 
-    window.ethereum !== undefined && initEthers();
+    initEthers();
   }, []);
 
   const connectWallet = async () => {
@@ -47,26 +43,15 @@ export const EthersProvider = ({ children }) => {
       const signer = await connectedProvider.getSigner();
       const contractInstance = new ethers.Contract(
         process.env.NEXT_PUBLIC_CONTRACT_ADDRESS,
-        contractABI,
+        SmartContract['abi'],
         signer
       );
 
       setSigner(signer);
-      setProvider(provider);
       setContract(contractInstance);
       Cookie.set("isAllowed", true);
     } else {
-      toast.error("Please install Metamask to continue.", {
-        position: "bottom-center",
-        autoClose: 3000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: false,
-        progress: undefined,
-        theme: "dark",
-        width: "1000px",
-      });
+      toast.error("Please install Metamask to continue.");
     }
 
     setLoading(false);
