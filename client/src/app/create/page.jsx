@@ -43,7 +43,7 @@ const Create = () => {
       method: "POST",
       body: JSON.stringify({
         ...formValues,
-        target: ethers.parseUnits(formValues.target, 18),
+        target: ethers.parseUnits(formValues.target, 18).toString(),
         deadline: new Date(formValues.deadline).getTime(),
       }),
     });
