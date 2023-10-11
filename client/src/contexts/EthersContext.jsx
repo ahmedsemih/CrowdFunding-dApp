@@ -14,6 +14,7 @@ export const EthersProvider = ({ children }) => {
   const [loading, setLoading] = useState(null);
   const [provider, setProvider] = useState(null);
   const [contract, setContract] = useState(null);
+  const [selectedCampaign, setSelectedCampaign] = useState(null);
 
   useEffect(() => {
     const initEthers = async () => {
@@ -67,8 +68,10 @@ export const EthersProvider = ({ children }) => {
     loading,
     contract,
     provider,
+    selectedCampaign, 
     connectWallet,
     disconnectWallet,
+    setSelectedCampaign,
   };
 
   return (
