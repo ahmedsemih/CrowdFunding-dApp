@@ -93,8 +93,8 @@ contract CrowdFunding {
         Campaign storage campaign = campaigns[_id];
 
         require(
-            _amount <= campaign.collectedAmount,
-            "The amount withdrawn must be less than or equal to the collected amount."
+            _amount <= campaign.collectedAmount - campaign.withdrawedAmount,
+            "The amount withdrawn must be less than or equal to the withdrawnable amount."
         );
 
         campaign.withdrawedAmount += _amount;
