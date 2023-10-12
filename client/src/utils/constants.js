@@ -7,17 +7,17 @@ import { HiOutlineUserCircle } from 'react-icons/hi';
 export const navLinks = [
     {
         Icon: BsGrid,
-        href: '/',
+        href: '/campaigns',
         title: 'All Campaigns'
     },
     {
         Icon: RiMoneyDollarCircleLine,
-        href: '/most',
+        href: '/campaigns?sort=most_funded',
         title: 'Most Funded'
     },
     {
         Icon: MdOutlineCampaign,
-        href: '/newest',
+        href: '/campaigns?sort=newest',
         title: 'New Campaigns'
     },
     {
