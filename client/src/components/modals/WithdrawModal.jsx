@@ -1,8 +1,11 @@
 "use client";
 
+import { ethers } from "ethers";
 import React, { useEffect, useRef, useState } from "react";
 
+import { toast } from "react-toastify";
 import { ClientButton, RangeInput } from "..";
+import { useEthersContext } from "@/contexts/EthersContext";
 
 const WithdrawModal = ({
   setIsOpen,
@@ -11,6 +14,8 @@ const WithdrawModal = ({
   totalWithdrawn,
 }) => {
   const modalRef = useRef(null);
+  const { contract } = useEthersContext();
+
   const [amount, setAmount] = useState(0);
   const [loading, setLoading] = useState(false);
 
@@ -28,22 +33,19 @@ const WithdrawModal = ({
 
   const handleClick = async (type) => {
     setLoading(true);
-
     if (type === "withdraw") {
       if (amount <= 0) return toast.error("Please enter a valid amount");
 
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_BASE_URL}/campaigns/${campaignId}/withdraw`,
-        {
-          method: "PUT",
-          body: JSON.stringify({
-            amount: ethers.parseUnits(amount, 18).toString(),
-          }),
-        }
-      );
+      try {
+        await contract.withdraw(campaignId, ethers.parseEther(amount), {
+          gasLimit: 1000000,
+        });
 
-      if (res.ok) toast.success(res.statusText);
-      else toast.error(res.statusText);
+        toast.success("Withdraw Successful!");
+      } catch (error) {
+        console.log(error)
+        toast.error("Withdraw Failed!");
+      }
     }
 
     setLoading(false);
@@ -73,12 +75,12 @@ const WithdrawModal = ({
         <div className="flex flex-col py-8">
           <p className="text-start text-neutral-500">
             * You can withdraw only{" "}
-            {(totalCollected ?? 0) - (totalWithdrawn ?? 0)} Eth. *
+            {((totalCollected ?? 0) - (totalWithdrawn ?? 0)).toFixed(2)} Eth. *
           </p>
           <RangeInput
             max={(totalCollected ?? 0) - (totalWithdrawn ?? 0)}
             min={0}
-            step={0.1}
+            step={0.0001}
             value={amount}
             onChange={(e) => setAmount(e.target.value)}
           />

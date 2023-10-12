@@ -101,8 +101,8 @@ const Card = ({ campaign, user }) => {
           <WithdrawModal
             setIsOpen={setIsWithdrawOpen}
             campaignId={campaign.id}
-            totalCollected={campaign.totalCollected}
-            totalWithdrawn={campaign.totalWithdrawed}
+            totalCollected={campaign.collectedAmount}
+            totalWithdrawn={campaign.withdrawedAmount}
           />
         )}
       </div>

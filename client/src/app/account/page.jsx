@@ -14,7 +14,7 @@ const fetchCampaignsByUser = async (address) => {
     0
   );
   const totalWithdrawn = data.campaigns.reduce(
-    (acc, campaign) => acc + Number(campaign.withdrawnAmount),
+    (acc, campaign) => acc + Number(campaign.withdrawedAmount),
     0
   );
 
