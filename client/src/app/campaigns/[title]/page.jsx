@@ -55,8 +55,8 @@ const CampaignDetails = () => {
         <div className="w-full h-full max-h-[300px] md:max-h-none md:h-[400px] xl:h-[500px]">
           <img
             className="rounded-lg w-full object-cover h-full max-h-[300px] md:max-h-none"
-            src={campaign.imageUrl}
-            alt={campaign.title}
+            src={campaign?.imageUrl}
+            alt={campaign?.title}
             width={1400}
             height={800}
           />
@@ -64,25 +64,25 @@ const CampaignDetails = () => {
         <div className="flex flex-col sm:flex-row md:flex-col justify-between gap-4">
           <div className="rounded-lg bg-neutral-800 min-w-[124px] w-full">
             <p className="p-4 text-center text-2xl">
-              {getDaysLeft(campaign.deadline) > 0
-                ? getDaysLeft(campaign.deadline)
+              {getDaysLeft(campaign?.deadline) > 0
+                ? getDaysLeft(campaign?.deadline)
                 : "Ended"}
             </p>
             <p className="bg-neutral-700 w-full rounded-b-lg p-2 text-sm text-neutral-400 text-center">
-              {getDaysLeft(campaign.deadline) > 0 ? "Days Left" : "Status"}
+              {getDaysLeft(campaign?.deadline) > 0 ? "Days Left" : "Status"}
             </p>
           </div>
           <div className="rounded-lg bg-neutral-800 min-w-[124px] w-full">
             <p className="p-4 text-center text-2xl">
-              {campaign.collectedAmount ?? 0}
+              {campaign?.collectedAmount ?? 0}
             </p>
             <p className="bg-neutral-700 w-full rounded-b-lg p-2 text-sm text-neutral-400 text-center">
-              Raised of {campaign.target}
+              Raised of {campaign?.target}
             </p>
           </div>
           <div className="rounded-lg bg-neutral-800 min-w-[124px] w-full">
             <p className="p-4 text-center text-2xl">
-              {campaign.donations?.length ?? 0}
+              {campaign?.donations?.length ?? 0}
             </p>
             <p className="bg-neutral-700 w-full rounded-b-lg p-2 text-sm text-neutral-400 text-center">
               Donations
@@ -90,7 +90,7 @@ const CampaignDetails = () => {
           </div>
         </div>
       </div>
-      <div className={`grid gap-4 ${getDaysLeft(campaign.deadline) > 0 ? 'grid-cols-1 md:grid-cols-4' : 'grid-cols-1'}`}>
+      <div className={`grid gap-4 ${getDaysLeft(campaign?.deadline) > 0 ? 'grid-cols-1 md:grid-cols-4' : 'grid-cols-1'}`}>
         <div className="col-span-4 md:col-span-3">
           <div className="mt-8">
             <h4 className="text-xl font-semibold uppercase mb-2">Creator</h4>
@@ -98,23 +98,23 @@ const CampaignDetails = () => {
               <Image
                 className="p-3 bg-neutral-800 rounded-full"
                 src={Logo}
-                alt={campaign.owner}
+                alt={campaign?.owner}
                 width={48}
                 height={48}
               />
-              <p className="truncate text-neutral-400">{campaign.owner}</p>
+              <p className="truncate text-neutral-400">{campaign?.owner}</p>
             </div>
           </div>
           <div className="mt-8">
             <h4 className="text-xl font-semibold uppercase mb-2">Story</h4>
-            <p className="text-neutral-400">{campaign.description}</p>
+            <p className="text-neutral-400">{campaign?.description}</p>
           </div>
           <div className="mt-8">
             <h4 className="text-xl font-semibold uppercase mb-2">
               Top Donations
             </h4>
             <div className="flex flex-col gap-4">
-              {topDonations.map((donation) => (
+              { topDonations?.length > 0 ? topDonations.map((donation) => (
                 <div className="bg-neutral-800 p-4 rounded-lg">
                   <p className="text-neutral-400 flex items-center gap-2">
                     <FaEthereum className="text-2xl text-emerald-500" />{" "}
@@ -125,11 +125,14 @@ const CampaignDetails = () => {
                     from <span className="truncate">{donation.donator}</span>
                   </p>
                 </div>
-              ))}
+              )) : (
+                <p className="text-neutral-400">No donations yet.</p>
+              )
+            }
             </div>
           </div>
         </div>
-        {getDaysLeft(campaign.deadline) > 0 && (
+        {getDaysLeft(campaign?.deadline) > 0 && (
           <div className="col-span-4 md:col-span-1 mt-8">
             <h4 className="text-xl font-semibold uppercase">Fund</h4>
             <form
