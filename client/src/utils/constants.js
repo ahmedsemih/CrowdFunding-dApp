@@ -22,8 +22,8 @@ export const navLinks = [
     },
     {
         Icon: TbZoomMoney,
-        href: '/discover',
-        title: 'Discover'
+        href: '/search',
+        title: 'Search'
     },
     {
         Icon: HiOutlineUserCircle,

@@ -50,7 +50,7 @@ const Card = ({ campaign, user }) => {
         <div className="flex justify-between pb-4 gap-4">
           <div className="flex flex-col overflow-hidden">
             <span className="text-neutral-300">{campaign.collectedAmount}</span>
-            <span className="text-neutral-400">
+            <span className="text-neutral-400 truncate">
               Raised of {campaign.target}
             </span>
           </div>
