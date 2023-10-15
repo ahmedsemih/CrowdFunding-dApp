@@ -1,6 +1,6 @@
-https://github.com/ahmedsemih/CrowdFunding-Dapp/assets/102798814/b9edc7be-7ecb-4728-8243-bdbf77002838
+https://github.com/ahmedsemih/CrowdFunding-dApp/assets/102798814/165084d2-f40c-4bd2-bb54-fcaae466540f
 
-# CrowdFunding Dapp
+# CrowdFunding dApp
 
 This is a decentralized crowdfunding application with NextJS and Solidity. In this dapp peoples can create campaigns or donate to them.
 
@@ -26,12 +26,12 @@ This is a decentralized crowdfunding application with NextJS and Solidity. In th
 
 
 ## :camera_flash: Screenshots
-![cf-ss-1](https://github.com/ahmedsemih/CrowdFunding-Dapp/assets/102798814/678b0929-be1c-4d20-bc60-30ae9ec65ad2)
-![cf-ss-2](https://github.com/ahmedsemih/CrowdFunding-Dapp/assets/102798814/f641d0c4-fbd1-4746-b161-70891d0f1df1)
-![cf-ss-3](https://github.com/ahmedsemih/CrowdFunding-Dapp/assets/102798814/e5048589-5967-4827-8e6f-afb2e2b5524c)
-![cf-ss-4](https://github.com/ahmedsemih/CrowdFunding-Dapp/assets/102798814/cf6a52f3-db16-4c90-993b-ee083b11d51b)
-![cf-ss-5](https://github.com/ahmedsemih/CrowdFunding-Dapp/assets/102798814/93642aba-c005-4093-9efb-78584cd2eb96)
-![cf-ss-6](https://github.com/ahmedsemih/CrowdFunding-Dapp/assets/102798814/00a569de-726b-4c27-ba21-54518af17f6f)
+![cf-ss-1](https://github.com/ahmedsemih/CrowdFunding-dApp/assets/102798814/0db3daea-4ac2-469d-add6-396d91dbf210)
+![cf-ss-2](https://github.com/ahmedsemih/CrowdFunding-dApp/assets/102798814/d0d585bc-2327-4f4c-8c35-d6eecd512968)
+![cf-ss-3](https://github.com/ahmedsemih/CrowdFunding-dApp/assets/102798814/3d9aff93-3f39-44fe-8a6e-feb1dd1800d9)
+![cf-ss-4](https://github.com/ahmedsemih/CrowdFunding-dApp/assets/102798814/aa2272c6-5a91-46b0-aebd-c0fdd6b7e224)
+![cf-ss-5](https://github.com/ahmedsemih/CrowdFunding-dApp/assets/102798814/fbe3626d-9c1a-467d-ba03-5779acfc0762)
+![cf-ss-6](https://github.com/ahmedsemih/CrowdFunding-dApp/assets/102798814/b99f46d8-a93c-4c07-8ae4-00474b6024bf)
 
 ## :triangular_flag_on_post: Getting Started
 
@@ -39,7 +39,7 @@ First of all you need to clone the repository and install the dependencies
 
 ```shell
 
-git clone https://github.com/ahmedsemih/fullstack-chat-app.git
+git clone https://github.com/ahmedsemih/CrowdFunding-dApp.git
 cd client
 npm install
 cd ..
