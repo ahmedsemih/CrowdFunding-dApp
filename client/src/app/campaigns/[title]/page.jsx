@@ -114,21 +114,22 @@ const CampaignDetails = () => {
               Top Donations
             </h4>
             <div className="flex flex-col gap-4">
-              { topDonations?.length > 0 ? topDonations.map((donation) => (
-                <div className="bg-neutral-800 p-4 rounded-lg">
-                  <p className="text-neutral-400 flex items-center gap-2">
-                    <FaEthereum className="text-2xl text-emerald-500" />{" "}
-                    <b>
-                      {donation.amount}{" "}
-                      <span className="hidden md:inline">Eth</span>
-                    </b>{" "}
-                    from <span className="truncate">{donation.donator}</span>
-                  </p>
-                </div>
-              )) : (
-                <p className="text-neutral-400">No donations yet.</p>
-              )
-            }
+              { 
+                topDonations?.length > 0 ? topDonations.map((donation, index) => (
+                  <div key={index} className="bg-neutral-800 p-4 rounded-lg">
+                    <p className="text-neutral-400 flex items-center gap-2">
+                      <FaEthereum className="text-2xl text-emerald-500" />{" "}
+                      <b>
+                        {donation.amount}{" "}
+                        <span className="hidden md:inline">Eth</span>
+                      </b>{" "}
+                      from <span className="truncate">{donation.donator}</span>
+                    </p>
+                  </div>
+                )) : (
+                  <p className="text-neutral-400">No donations yet.</p>
+                )
+              } 
             </div>
           </div>
         </div>

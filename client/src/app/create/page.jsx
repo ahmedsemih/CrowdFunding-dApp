@@ -9,7 +9,7 @@ import { useEthersContext } from "@/contexts/EthersContext";
 import { toast } from "react-toastify";
 
 const Create = () => {
-  const { signer, connectWallet } = useEthersContext();
+  const { signer, contract, connectWallet } = useEthersContext();
 
   const [loading, setLoading] = useState(false);
   const [formValues, setFormValues] = useState({
@@ -37,21 +37,30 @@ const Create = () => {
       return toast.error("Please fill all the fields");
 
     if (!signer) return connectWallet();
+    
+    try {
+      setLoading(true);
+  
+      const { title, description, imageUrl } = formValues;
+      const target = ethers.parseUnits(formValues.target, 18).toString();
+      const deadline = new Date(formValues.deadline).getTime();
 
-    setLoading(true);
-    const res = await fetch("/api/campaigns", {
-      method: "POST",
-      body: JSON.stringify({
-        ...formValues,
-        target: ethers.parseUnits(formValues.target, 18).toString(),
-        deadline: new Date(formValues.deadline).getTime(),
-      }),
-    });
-    setLoading(false);
+      await contract.createCampaign(
+        title,
+        description,
+        imageUrl,
+        target,
+        deadline,
+        { gasLimit: 1000000 }
+      );
+      
+    } catch (error) {
+      toast.error("Campaign couldn't be created.");
+    } finally {
+      setLoading(false);
+    }
 
-    if (!res.ok) return toast.error(res.statusText);
-
-    toast.success(res.statusText);
+    toast.success("Campaign created successfully.");
     handleReset();
   };
 
