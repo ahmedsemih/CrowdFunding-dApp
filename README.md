@@ -48,19 +48,19 @@ npm install
 
 ```
 
-After doing this you must assign the following environment variables
+After doing this you must create a project on Alchemy. Then assign the following environment variables
 
 ```shell
 
 --- CLIENT ---
-NEXT_PUBLIC_API_BASE_URL
-NEXT_PUBLIC_PROVIDER_URL
-NEXT_PUBLIC_CONTRACT_ADDRESS
-NEXT_PUBLIC_PRIVATE_KEY
+NEXT_PUBLIC_API_BASE_URL - API base url
+NEXT_PUBLIC_PROVIDER_URL - Alchemy url with your API key
+NEXT_PUBLIC_CONTRACT_ADDRESS - Address of your contract ( You will get this after deploy your contract )
+NEXT_PUBLIC_PRIVATE_KEY - Metamask private key
 
 --- SMART CONTRACT ---
-ACCOUNT_PRIVATE_KEY
-PROJECT_ID
+ACCOUNT_PRIVATE_KEY - Metamask private key
+PROJECT_ID - Alchemy API key
 
 ```
 
