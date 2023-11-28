@@ -9,7 +9,9 @@ const fetchCampaigns = async () => {
     cache: "no-cache",
   });
   const data = await res.json();
-  const campaigns = data.campaigns;
+  var campaigns = data.campaigns;
+
+  if (!campaigns) campaigns = [];
 
   campaigns.sort((a, b) => b.collectedAmount - a.collectedAmount);
   const tops = campaigns.slice(0, 9);
@@ -27,7 +29,7 @@ const fetchTotalCollected = async () => {
     cache: "no-cache",
   });
   const data = await res.json();
-  return data.total;
+  return data.total || 0;
 };
 
 const Home = async () => {

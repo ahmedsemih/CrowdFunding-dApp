@@ -7,8 +7,10 @@ async function main() {
 
   const ContractFactory = await hre.ethers.getContractFactory("CrowdFunding");
   const contract = await ContractFactory.deploy();
-
   await contract.waitForDeployment();
+  
+  const address = await contract.getAddress()
+  console.log('Address of this contract: ', address);
 }
 
 main()

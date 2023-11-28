@@ -6,7 +6,9 @@ const fetchCampaigns = async (sort) => {
     cache: "no-cache",
   });
   const data = await res.json();
-  const campaigns = data.campaigns;
+  var campaigns = data.campaigns;
+
+  if (!campaigns) campaigns = [];
 
   if (sort === undefined || sort === null) return campaigns;
   else if (sort === "newest") return campaigns.slice(-9).reverse();

@@ -8,22 +8,26 @@ const fetchCampaignsByUser = async (address) => {
     { method: "GET", cache: "no-cache" }
   );
   const data = await res.json();
+  var campaigns = data.campaigns;
 
-  const totalCollected = data.campaigns.reduce(
+  if (!campaigns) campaigns = [];
+
+  const totalCollected = campaigns.reduce(
     (acc, campaign) => acc + Number(campaign.collectedAmount),
     0
   );
-  const totalWithdrawn = data.campaigns.reduce(
+  const totalWithdrawn = campaigns.reduce(
     (acc, campaign) => acc + Number(campaign.withdrawedAmount),
     0
   );
 
-  return { campaigns: data.campaigns, totalCollected, totalWithdrawn };
+  return { campaigns: campaigns, totalCollected, totalWithdrawn };
 };
 
 const Account = async () => {
   const { signer } = connectBlockchain();
-  const { campaigns, totalCollected, totalWithdrawn } = await fetchCampaignsByUser(signer.address);
+  const { campaigns, totalCollected, totalWithdrawn } =
+    await fetchCampaignsByUser(signer.address);
 
   return (
     <main>
@@ -68,7 +72,11 @@ const Account = async () => {
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
               {campaigns?.map((campaign) => (
-                <Card campaign={campaign} key={campaign.id} user={signer.address} />
+                <Card
+                  campaign={campaign}
+                  key={campaign.id}
+                  user={signer.address}
+                />
               ))}
             </div>
           </>

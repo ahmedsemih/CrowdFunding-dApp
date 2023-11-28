@@ -12,7 +12,9 @@ const findCampaigns = async (query) => {
     cache: "no-cache",
   });
   const data = await res.json();
-  const campaigns = data.campaigns;
+  var campaigns = data.campaigns;
+
+  if (!campaigns) campaigns = [];
 
   const priorityCampaigns = campaigns.filter(
     (campaign) =>
@@ -53,7 +55,8 @@ const SearchPage = async ({ searchParams }) => {
         <div className="flex flex-col  justify-center gap-4 mt-10">
           <h1 className="text-4xl font-semibold">No Campaigns Found</h1>
           <p className="text-lg text-neutral-400">
-            It looks like there are no campaigns found. Try searching for another term.
+            It looks like there are no campaigns found. Try searching for
+            another term.
           </p>
         </div>
       ) : (
