@@ -53,7 +53,7 @@ After doing this you must create a project on Alchemy. Then assign the following
 ```shell
 
 --- CLIENT ---
-NEXT_PUBLIC_API_BASE_URL - API base url
+NEXT_PUBLIC_API_BASE_URL - API url like: http://localhost:3000/api
 NEXT_PUBLIC_PROVIDER_URL - Alchemy url with your API key
 NEXT_PUBLIC_CONTRACT_ADDRESS - Address of your contract ( You will get this after deploy your contract )
 NEXT_PUBLIC_PRIVATE_KEY - Metamask private key
