@@ -2,6 +2,7 @@
 
 import { ethers } from "ethers";
 import React, { useState } from "react";
+import { useRouter } from 'next/navigation';
 import { FaEthereum } from "react-icons/fa";
 
 import { ClientButton, FormInput } from "@/components";
@@ -9,6 +10,7 @@ import { useEthersContext } from "@/contexts/EthersContext";
 import { toast } from "react-toastify";
 
 const Create = () => {
+  const router = useRouter();
   const { signer, contract, connectWallet } = useEthersContext();
 
   const [loading, setLoading] = useState(false);
@@ -54,14 +56,17 @@ const Create = () => {
         { gasLimit: 1000000 }
       );
       
+      toast.success("Campaign created successfully.");
+      handleReset();
+
+      setTimeout(() => {
+        return router.push('/account');
+      }, 2000);
     } catch (error) {
       toast.error("Campaign couldn't be created.");
     } finally {
       setLoading(false);
     }
-
-    toast.success("Campaign created successfully.");
-    handleReset();
   };
 
   const handleReset = () => {
