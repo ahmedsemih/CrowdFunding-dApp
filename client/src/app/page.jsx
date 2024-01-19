@@ -14,13 +14,14 @@ const fetchCampaigns = async () => {
   if (!campaigns) campaigns = [];
 
   campaigns.sort((a, b) => b.collectedAmount - a.collectedAmount);
+  
   const tops = campaigns.slice(0, 9);
-
   const donationCount = campaigns.reduce(
     (total, campaign) => total + campaign.donations.length,
     0
   );
-  return { campaigns: tops, donationCount };
+
+  return { campaigns: tops, donationCount, campaignCount: campaigns.length };
 };
 
 const fetchTotalCollected = async () => {
@@ -34,7 +35,7 @@ const fetchTotalCollected = async () => {
 
 const Home = async () => {
   const totalCollected = await fetchTotalCollected();
-  const { campaigns, donationCount } = await fetchCampaigns();
+  const { campaigns, campaignCount, donationCount } = await fetchCampaigns();
 
   return (
     <div>
@@ -64,7 +65,7 @@ const Home = async () => {
           <div className="bg-neutral-700 rounded-lg p-4 w-full">
             <h5 className="text-center mb-2">All Campaigns</h5>
             <p className="text-2xl font-semibold text-center">
-              {campaigns?.length ?? 0}
+              {campaignCount}
             </p>
           </div>
           <div className="bg-neutral-700 rounded-lg p-4 w-full">
