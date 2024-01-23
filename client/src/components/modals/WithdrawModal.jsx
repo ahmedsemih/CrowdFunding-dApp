@@ -43,7 +43,6 @@ const WithdrawModal = ({
 
         toast.success("Withdraw Successful!");
       } catch (error) {
-        console.log(error)
         toast.error("Withdraw Failed!");
       }
     }
