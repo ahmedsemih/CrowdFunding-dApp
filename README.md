@@ -69,7 +69,7 @@ And deploy your smart contract then run your client
 ```shell
 
 --- SMART CONTRACT ---
-npx hardhat run scripts/deploy.js
+npx hardhat run scripts/deploy.js --network sepolia
 
 --- CLIENT ---
 npm run dev
